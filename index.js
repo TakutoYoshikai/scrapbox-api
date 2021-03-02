@@ -11,7 +11,6 @@ function getPageList(projectName) {
         reject(err);
         return;
       }
-      console.log(body);
       resolve(JSON.parse(body));
     });
   });
@@ -29,7 +28,6 @@ function getPage(projectName, pageTitle) {
         reject(err);
         return;
       }
-      console.log(body);
       resolve(JSON.parse(body));
     });
   });
