@@ -69,5 +69,5 @@ module.exports = {
   getPageList,
   getPage,
   getPageText,
-  getPageIcon
+  getPageIcon,
 }
