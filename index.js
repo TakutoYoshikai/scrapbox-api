@@ -28,7 +28,7 @@ async function getPage(projectName, pageTitle) {
 
 async function getPageText(projectName, pageTitle) {
   const url = "https://scrapbox.io/api/pages/" + encodeURIComponent(projectName) + "/" + encodeURIComponent(pageTitle) + "/text";
-  return JSON.parse(await get(url));
+  return await get(url);
 }
 
 async function getPageIcon(projectName, pageTitle) {
