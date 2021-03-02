@@ -1,42 +1,9 @@
 const request = require("request");
 
-function getPageList(projectName) {
+function get(url) {
   return new Promise((resolve, reject) => {
     const options = {
-      url: "https://scrapbox.io/api/pages/" + encodeURIComponent(projectName),
-      method: "GET"
-    }
-    request(options, function(err, response, body) {
-      if (err) {
-        reject(err);
-        return;
-      }
-      resolve(JSON.parse(body));
-    });
-  });
-}
-
-
-function getPage(projectName, pageTitle) {
-  return new Promise((resolve, reject) => {
-    const options = {
-      url: "https://scrapbox.io/api/pages/" + encodeURIComponent(projectName) + "/" + encodeURIComponent(pageTitle),
-      method: "GET"
-    }
-    request(options, function(err, response, body) {
-      if (err) {
-        reject(err);
-        return;
-      }
-      resolve(JSON.parse(body));
-    });
-  });
-}
-
-function getPageText(projectName, pageTitle) {
-  return new Promise((resolve, reject) => {
-    const options = {
-      url: "https://scrapbox.io/api/pages/" + encodeURIComponent(projectName) + "/" + encodeURIComponent(pageTitle) + "/text",
+      url: url,
       method: "GET"
     }
     request(options, function(err, response, body) {
@@ -48,21 +15,25 @@ function getPageText(projectName, pageTitle) {
     });
   });
 }
+async function getPageList(projectName) {
+  const url = "https://scrapbox.io/api/pages/" + encodeURIComponent(projectName);
+  return JSON.parse(await get(url));
+}
 
-function getPageIcon(projectName, pageTitle) {
-  return new Promise((resolve, reject) => {
-    const options = {
-      url: "https://scrapbox.io/api/pages/" + encodeURIComponent(projectName) + "/" + encodeURIComponent(pageTitle) + "/icon",
-      method: "GET"
-    }
-    request(options, function(err, response, body) {
-      if (err) {
-        reject(err);
-        return;
-      }
-      resolve(Buffer.from(body));
-    });
-  });
+
+async function getPage(projectName, pageTitle) {
+  const url = "https://scrapbox.io/api/pages/" + encodeURIComponent(projectName) + "/" + encodeURIComponent(pageTitle);
+  return JSON.parse(await get(url));
+}
+
+async function getPageText(projectName, pageTitle) {
+  const url = "https://scrapbox.io/api/pages/" + encodeURIComponent(projectName) + "/" + encodeURIComponent(pageTitle) + "/text";
+  return JSON.parse(await get(url));
+}
+
+async function getPageIcon(projectName, pageTitle) {
+  const url = "https://scrapbox.io/api/pages/" + encodeURIComponent(projectName) + "/" + encodeURIComponent(pageTitle) + "/icon";
+  return Buffer.from(await get(url));
 }
 
 module.exports = {
