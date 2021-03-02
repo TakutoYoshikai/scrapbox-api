@@ -1,5 +1,5 @@
 # scrapbox-api
-This is a node.js library to fetch data on scrapbox.
+This is a node.js library to fetch data from scrapbox.
 See [here](https://scrapbox.io/help-jp/API).
 
 ### Usage
