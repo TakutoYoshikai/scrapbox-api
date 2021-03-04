@@ -2,6 +2,9 @@
 This is a Node.js library to fetch data from scrapbox.
 See [here](https://scrapbox.io/help-jp/API).
 
+### Warning
+It may be not able to use this API in the future by scrapbox changes.
+
 ### Usage
 **install**
 ```bash
